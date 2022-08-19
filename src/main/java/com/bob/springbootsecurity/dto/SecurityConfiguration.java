@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class WebSecurityConfig{
+public class SecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -42,7 +42,7 @@ public class WebSecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/login").permitAll()
+                //.antMatchers("/login").permitAll()
                 .antMatchers("/hello").hasAnyAuthority( "CREATOR","EDITOR", "ADMIN")
                 .antMatchers("/table").hasAnyAuthority("EDITOR","ADMIN")
                 .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")

@@ -1,6 +1,6 @@
 package com.bob.springbootsecurity.dto;
 
-import com.bob.springbootsecurity.service.UserDetailsServiceImpl;
+import com.bob.springbootsecurity.service.implement.UserDetailsServiceImpl;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.*;
@@ -42,7 +42,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/","/createUser","/doSaveUser").permitAll()
                 .antMatchers("/hello","/new").hasAnyAuthority( "CREATOR","EDITOR", "ADMIN")
                 .antMatchers("/table").hasAnyAuthority("EDITOR","ADMIN")
                 .antMatchers("/edit/**","/editBook/**").hasAnyAuthority("ADMIN", "EDITOR")

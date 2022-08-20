@@ -6,7 +6,10 @@
     <body>
         <h1>Welcome to Spring Security！</h1>
         <p>點擊 <a th:href="@{/goods}">Goods</a> 進入資料</p>
-        <p>點擊 <a th:href="@{/newBook}">New Book</a> 進入新書通告</p>
+        <p>點擊 <a th:href="@{/newBooks}">New Book</a> 進入新書通告</p>
+        <form th:action="@{/createUser}" method="post">
+            <input type="submit" value="CreateNewUser"/>
+        </form>
     </body>
 </html>
 

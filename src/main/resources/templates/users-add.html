@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:sec="https://www.thymleaf.org/thymleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>創建新帳號</h1>
+<form th:action="@{/doSaveUser}" method="post">
+    <ul> <li>User_Name</li>
+        <li><input type="text" name="userName"></li>
+        <li>Email</li>
+        <li><input type="text" name="email"></li>
+        <li>Password</li>
+        <li><input type="password" name="password"></li>
+        <li><input type="submit" value="儲存"></li>
+    </ul> </form>
+</body>
+</html>

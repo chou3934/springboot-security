@@ -1,4 +1,4 @@
-package com.bob.springbootsecurity.service;
+package com.bob.springbootsecurity.service.implement;
 
 import com.bob.springbootsecurity.model.MyUserDetails;
 import com.bob.springbootsecurity.model.User;

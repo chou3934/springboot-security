@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:sec="https://www.thymleaf.org/thymleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>NewBook Manager</title>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    Welcome <b><span sec:authentication="name">Username</span></b>
+    &nbsp;&nbsp; <span sec:authentication="principal.authorities">Roles</span>
+</div>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout"/>
+</form>
+
+<h1>新書通告</h1>
+<table width="50%">
+    <form sec:authorize="hasAnyAuthority('ADMIN','EDITOR')" th:action="@{/add}" method="post">
+        <input type="submit" value="addBook"/>
+    </form>
+    <thead><th>Book_Id<th>
+    <th>Title<th>
+    <th>Author<th>
+    <th>Call_Number<th>
+    <th>Barcode<th>
+    <th>Exh_Fr<th>
+    <th>Exh_End<th>
+    <th sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">operation</th>
+    </thead><tbody><tr th:each="b:${booksList}">
+    <td th:text="${b.bookId}">1000</td>
+    <td th:text="${b.title}">MySQL</td>
+    <td th:text="${b.author}">DBMS</td>
+    <td th:text="${b.callNumber}">DBMS</td>
+    <td th:text="${b.barcode}">DBMS</td>
+    <td th:text="${#dates.format(b.exhFr, 'yyyy/MM/dd HH:mm')}">2020/07/03</td>
+    <td th:text="${#dates.format(b.exhEnd, 'yyyy/MM/dd HH:mm')}">2020/07/03</td>
+    <td sec:authorize="hasAnyAuthority('ADMIN','EDITOR')">
+        <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/deleteBook/{bookId}(bookId=${b.bookId})}">delete</a>  &nbsp; &nbsp; &nbsp;
+        <a  th:href="@{/editBook/{bookId}(bookId=${b.bookId})}">update</a></td>
+</tr></tbody></table>
+</body>
+</html>

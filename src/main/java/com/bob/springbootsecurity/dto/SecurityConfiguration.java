@@ -42,12 +42,11 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                //.antMatchers("/login").permitAll()
-                .antMatchers("/hello").hasAnyAuthority( "CREATOR","EDITOR", "ADMIN")
+                .antMatchers("/").permitAll()
+                .antMatchers("/hello","/new").hasAnyAuthority( "CREATOR","EDITOR", "ADMIN")
                 .antMatchers("/table").hasAnyAuthority("EDITOR","ADMIN")
-                .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
-                .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
-                .antMatchers("/delete/**").hasAuthority("ADMIN")
+                .antMatchers("/edit/**","/editBook/**").hasAnyAuthority("ADMIN", "EDITOR")
+                .antMatchers("/delete/**","/deleteBook/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()

@@ -1,4 +1,4 @@
-package com.bob.springbootsecurity;
+package com.bob.springbootsecurity.rm;
 
 import com.bob.springbootsecurity.model.User;
 import org.springframework.jdbc.core.RowMapper;

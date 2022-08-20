@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:sec="https://www.thymleaf.org/thymleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    Welcome <b></b><span sec:authentication="name">Username</span></b>
+    &nbsp;&nbsp; <span sec:authentication="principal.authorities">Roles</span>
+</div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout"/>
+</form>
+<h1>the books update pages</h1>
+<form th:action="@{/doUpdateBook}" method="post">
+    <ul><li><input type="hidden" name="bookId" th:value="${b.bookId}"></li>
+        <li>Title</li>
+        <li><input type="text" name="title" th:value="${b.title}"></li>
+        <li>Author</li>
+        <li><input type="text" name="author" th:value="${b.author}"></li>
+        <li>Call_Number</li>
+        <li><input type="text" name="callNumber" th:value="${b.callNumber}"></li>
+        <li>Barcode</li>
+        <li><input type="text" name="barcode" th:value="${b.barcode}"></li>
+        <li>Exh_Fr</li>
+        <li><input type="text" name="exhFr" th:value="${b.exhFr}"></li>
+        <li>Exh_End</li>
+        <li><input type="text" name="exhEnd" th:value="${b.exhEnd}"></li>
+        <li>Act_Yn</li>
+        <li><input type="text" name="actYn" th:value="${b.actYn}"></li>
+        <li><input type="submit" value="Update Goods"></li>
+    </ul> </form>
+</body>
+</html>
